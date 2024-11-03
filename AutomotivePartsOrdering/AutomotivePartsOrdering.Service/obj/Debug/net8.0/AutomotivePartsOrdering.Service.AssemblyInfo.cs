@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutomotivePartsOrdering.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd8a825a809ef7485a2111d6d113e2e6a077d9b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b2214d1f27ae8a99c0e61fa0a66feb5d526f952")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutomotivePartsOrdering.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutomotivePartsOrdering.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

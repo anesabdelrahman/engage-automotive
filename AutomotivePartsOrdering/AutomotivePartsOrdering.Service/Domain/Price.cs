@@ -4,6 +4,7 @@ namespace AutomotivePartsOrdering.Service.Domain;
 
 public class Price
 {
+    public Guid Id { get; set; }
     public decimal NetValue { get; set; }
     public decimal GrossValue { get; set; }
     public decimal TaxValue { get; set; }

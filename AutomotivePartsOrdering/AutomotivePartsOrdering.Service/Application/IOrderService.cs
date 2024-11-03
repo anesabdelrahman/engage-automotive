@@ -4,6 +4,6 @@ namespace AutomotivePartsOrdering.Service.Application;
 
 public interface IOrderService
 {
-    Task<PartsOrder> CreateOrderAsync(List<(string partCode, int quantity)> items);
-    Task<PartsOrder> GetOrderAsync(string partsOrderId);
+    Task<HttpResponseMessage> CreateOrderAsync(Order order);
+    Task<HttpResponseMessage> GetOrderAsync(string partsOrderId);
 }

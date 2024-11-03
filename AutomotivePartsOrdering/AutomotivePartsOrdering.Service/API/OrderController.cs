@@ -2,35 +2,29 @@
 using AutomotivePartsOrdering.Service.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutomotivePartsOrdering.Service.API
-{
+namespace AutomotivePartsOrdering.Service.API {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController(IOrderService orderService) : ControllerBase
-    {
+    public class OrderController(IOrderService orderService) : ControllerBase {
         [HttpGet]
         public async Task<IActionResult> GetOrder(string partsOrderId) {
-            try {
-                var order = await orderService.GetOrderAsync(partsOrderId);
-                return Ok(order);
+            var response = await orderService.GetOrderAsync(partsOrderId);
+
+            if (response.IsSuccessStatusCode) {
+                return Ok(response);
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            return BadRequest(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder([FromBody] List<OrderItemDto> orderItems) {
-            try {
-                var items = orderItems.Select(i => (i.PartCode, i.Quantity)).ToList();
-                var order = await orderService.CreateOrderAsync(items);
-                return Ok(order);
+        public async Task<IActionResult> CreateOrder([FromBody] Order order) {
+            var response = await orderService.CreateOrderAsync(order);
+            if (response.IsSuccessStatusCode) {
+                return Ok(response);
             }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+
+            return BadRequest(response);
         }
     }
 }

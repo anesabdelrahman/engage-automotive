@@ -3,6 +3,6 @@
 namespace AutomotivePartsOrdering.Service.Infrastructure.Repository;
 
 public interface IOrderRepository {
-    Task<PartsOrder> GetByIdAsync(int orderId);
-    Task AddAsync(PartsOrder order);
+    Task<Order> GetByIdAsync(int orderId);
+    Task AddAsync(Order order);
 }
