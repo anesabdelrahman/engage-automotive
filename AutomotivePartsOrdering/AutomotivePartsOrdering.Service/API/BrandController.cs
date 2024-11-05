@@ -6,7 +6,7 @@ namespace AutomotivePartsOrdering.Service.API {
     [ApiController]
     public class BrandController(IBrandService partService) : ControllerBase {
         [HttpGet]
-        public async Task<IActionResult> GetPart([FromQuery] int page, int pageSize) {
+        public async Task<IActionResult> GetBrand([FromQuery] int page, int pageSize) {
 
             var response = await partService.GetBrandAsync(page, pageSize);
             

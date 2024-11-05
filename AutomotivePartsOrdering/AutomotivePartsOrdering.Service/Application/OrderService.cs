@@ -7,7 +7,7 @@ using AutomotivePartsOrdering.Service.Infrastructure.Repository;
 using Microsoft.Extensions.Options;
 
 namespace AutomotivePartsOrdering.Service.Application {
-    public class OrderService(IOrderRepository orderRepository, IHttpClientWrapper httpClientWrapper, IConfiguration configuration, IOptions<ProviderSettings> options, ILogger<OrderService> logger) : IOrderService
+    public class OrderService(IOrderRepository orderRepository, IHttpClientWrapper httpClientWrapper, IAuthorisationService authorisationService, IOptions<ProviderSettings> options, ILogger<OrderService> logger) : IOrderService
     {
         const string OrderProvider = "ProviderOrderUrl";
 
@@ -17,9 +17,15 @@ namespace AutomotivePartsOrdering.Service.Application {
                 var orderDto = OrderMapper.MapOrderToDto(order);
                 var jsonContent = JsonSerializer.Serialize(orderDto);
                 using var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var (url, scope) = CreatePostUrl();
-               
-                return await httpClientWrapper.PostAsync(content, url, scope );
+                var token = await authorisationService.GetAccessTokenAsync(options, options.Value.ProviderOrderCreateScope);
+                var url = CreatePostUrl();
+
+                if (token != null)
+                {
+                    return await httpClientWrapper.PostAsync(content, url, token);
+                }
+
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
             catch (Exception exception)
             {
@@ -27,7 +33,7 @@ namespace AutomotivePartsOrdering.Service.Application {
                 
                 return new HttpResponseMessage(HttpStatusCode.BadRequest)
                 {
-                    Content = new StringContent($"An unexpected error occurred.Please try again later or. Exception: {exception.Message}", Encoding.UTF8, "application / json")
+                    Content = new StringContent($"An unexpected error occurred.Please try again later or. Exception: {exception.Message}", Encoding.UTF8, "application/json")
                 };
             }
         }
@@ -35,28 +41,32 @@ namespace AutomotivePartsOrdering.Service.Application {
         public async Task<HttpResponseMessage> GetOrderAsync(string partsOrderId)
         {
             try {
-                var(url, scope) = CreateGetUrl(partsOrderId);
-                return await httpClientWrapper.GetAsync(url, scope);
+                var token = await authorisationService.GetAccessTokenAsync(options, options.Value.ProviderOrderReadScope);
+                var url = CreateGetUrl(partsOrderId);
+                if (token != null)
+                {
+                    return await httpClientWrapper.GetAsync(url, token);
+                }
+
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
             catch (Exception exception) {
                 logger.LogError($"{nameof(GetOrderAsync)}: {exception.Message}");
                 
                 return new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent($"An unexpected error occurred.Please try again later or. Exception: {exception.Message}", Encoding.UTF8, "application / json")
+                    Content = new StringContent($"An unexpected error occurred.Please try again later or. Exception: {exception.Message}", Encoding.UTF8, "application/json")
                 };
             }
         }
 
-        private (string url, string scope) CreatePostUrl() {
+        private string CreatePostUrl() {
             var url = options.Value.ProviderOrderUrl;
-            var scope = options.Value.ProviderOrderCreateScope;
-            return (url, scope);
+            return url;
         }
 
-        private (string url, string scope) CreateGetUrl(string partsOrderId) {
+        private string CreateGetUrl(string partsOrderId) {
             var url = $"{options.Value.ProviderOrderUrl}/{partsOrderId}";
-            var scope = options.Value.ProviderOrderReadScope;
-            return (url, scope);
+            return url;
         }
     }
 }

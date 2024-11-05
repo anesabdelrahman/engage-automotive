@@ -8,10 +8,10 @@ public class OrderMapper
             CustomerId = order.CustomerId,
             CompanyId = order.CompanyId,
             OrderContact = new OrderContactDto {
-                Name = order.OrderContact.Name,
-                Phone = order.OrderContact.Phone,
-                Email = order.OrderContact.Email,
-                CompanyName = order.OrderContact.CompanyName
+                Name = order?.OrderContact?.Name,
+                Phone = order.OrderContact?.Phone,
+                Email = order.OrderContact?.Email,
+                CompanyName = order.OrderContact?.CompanyName
             },
             AlternateDeliveryAddress = new AddressDto {
                 StreetName = order.AlternateDeliveryAddress?.StreetName,

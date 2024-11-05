@@ -2,8 +2,9 @@
 
     public interface IHttpClientWrapper {
 
-        Task<HttpResponseMessage> GetAsync(string url, string scope);
-        Task<HttpResponseMessage> PutAsync(Uri uri, StringContent request, string clientName, string scope);
-        Task<HttpResponseMessage> PostAsync(HttpContent content, string requestUri, string scope);
+        Task<HttpResponseMessage> GetAsync(string url, string token);
+        Task<HttpResponseMessage> PutAsync(HttpContent content, string requestUri, string token);
+        Task<HttpResponseMessage> PostAsync(HttpContent content, string requestUri, string token);
+        Task<HttpResponseMessage> PostAsync(string tokenUrl, FormUrlEncodedContent requestContent);
     }
 }
