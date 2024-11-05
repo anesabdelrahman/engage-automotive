@@ -1,5 +1,7 @@
-﻿namespace AutomotivePartsOrdering.Service.Application;
+﻿using AutomotivePartsOrdering.Service.Dto;
+
+namespace AutomotivePartsOrdering.Service.Application;
 
 public interface IBrandService {
-    Task<HttpResponseMessage> GetBrandAsync(int page, int pageSize);
+    Task<BrandsDto?> GetBrandAsync(int page, int pageSize);
 }

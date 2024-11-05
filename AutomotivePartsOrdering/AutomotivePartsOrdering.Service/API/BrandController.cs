@@ -7,13 +7,9 @@ namespace AutomotivePartsOrdering.Service.API {
     public class BrandController(IBrandService partService) : ControllerBase {
         [HttpGet]
         public async Task<IActionResult> GetBrand([FromQuery] int page, int pageSize) {
-
             var response = await partService.GetBrandAsync(page, pageSize);
-            
-            if (response.IsSuccessStatusCode) {
-                return Ok(response);
-            }
-            return BadRequest(response);
+
+            return Ok(response);
         }
     }
 }

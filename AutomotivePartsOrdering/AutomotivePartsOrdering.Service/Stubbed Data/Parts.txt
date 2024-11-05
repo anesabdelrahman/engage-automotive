@@ -1,0 +1,225 @@
+[
+  {
+    "Id": "d85ef7a6-1fdd-4d0c-9c82-a891a77db8a1",
+    "BrandCode": "AL",
+    "PartCode": "P001",
+    "Description": "Front Brake Pad",
+    "Price": 75.99,
+	"Quantity": 23,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2023-01-15T00:00:00Z",
+        "AlternativeType": "Superseded",
+        "Parts": [
+          {
+            "Id": "4b68c8a3-cadf-4dc3-b8e5-a1d8e92b38f1",
+            "BrandCode": "AL",
+            "PartCode": "P002",
+            "Price": 80.69,
+            "Quantity": 5
+          },
+          {
+            "Id": "567bc23d-1f5a-4df9-80bc-9a9f8a9e1f45",
+            "BrandCode": "AL",
+            "PartCode": "P003",
+            "Price": 84.69,
+            "Quantity": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "eacb7e2f-8791-47eb-92ef-5f8e1bd8e1de",
+    "BrandCode": "FO",
+    "PartCode": "P010",
+    "Description": "Rear Brake Disc",
+    "Price": 135.14,
+	"Quantity": 9,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2023-05-20T00:00:00Z",
+        "AlternativeType": "Replacement",
+        "Parts": [
+          {
+            "Id": "b932f9b3-1c3f-4d53-bded-7b5cfa9f7a9b",
+            "BrandCode": "FO",
+            "PartCode": "P011",
+            "Price": 125.25,
+            "Quantity": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "dab92b83-4eab-45c6-9b02-1f2a5ae237d7",
+    "BrandCode": "BM",
+    "PartCode": "P020",
+    "Description": "Oil Filter",
+    "Price": 99.99,
+	"Quantity": 4,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2022-11-05T00:00:00Z",
+        "AlternativeType": "Superseded",
+        "Parts": [
+          {
+            "Id": "ab38c3f9-6374-4a2d-85e3-0d8b9241b1cf",
+            "BrandCode": "BM",
+            "PartCode": "P021",
+            "Price": 87.89,
+            "Quantity": 2
+          },
+          {
+            "Id": "c457fc02-9e61-4f39-834a-5d8e8bc3f9af",
+            "BrandCode": "BM",
+            "PartCode": "P022",
+            "Price": 79.88,
+            "Quantity": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "fa3d87be-b92d-48b6-8978-f9a6e1c89f1e",
+    "BrandCode": "AL",
+    "PartCode": "P030",
+    "Description": "Air Filter",
+    "Price": 65,
+	"Quantity": 8,
+    "AlternativeParts": []
+  },
+  {
+    "Id": "61d487fb-3b71-4f99-8d4e-5a6df1a5f2c3",
+    "BrandCode": "AL",
+    "PartCode": "P040",
+    "Description": "Fuel Filter",
+    "Price": 55.25,
+	"Quantity": 78,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2021-08-12T00:00:00Z",
+        "AlternativeType": "Replacement",
+        "Parts": [
+          {
+            "Id": "fa83d9e3-56ab-498f-b71e-2d9d7a6f8f1e",
+            "BrandCode": "AL",
+            "PartCode": "P041",
+            "Price": 45.99,
+            "Quantity": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "4ab72f3c-7d2b-469d-85f8-9b3e1c7a5f1d",
+    "BrandCode": "FO",
+    "PartCode": "P050",
+    "Description": "Battery",
+    "Price": 100.58,
+	"Quantity": 4,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2022-03-01T00:00:00Z",
+        "AlternativeType": "Superseded",
+        "Parts": [
+          {
+            "Id": "3f9ab6e8-65d7-49a3-b8e7-5b1d6c8a3f9b",
+            "BrandCode": "FO",
+            "PartCode": "P051",
+            "Price": 115.6,
+            "Quantity": 2
+          },
+          {
+            "Id": "8b1f3d7e-3ab4-4c8a-8e7d-9f8a9c8f7d3e",
+            "BrandCode": "FO",
+            "PartCode": "P052",
+            "Price": 120.6,
+            "Quantity": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "5a3c9e2b-7d1b-4f1e-8d9b-7c1d9f2a8f6b",
+    "BrandCode": "FO",
+    "PartCode": "P060",
+    "Description": "Headlight",
+    "Price": 146.7,
+	"Quantity": 28,
+    "AlternativeParts": []
+  },
+  {
+    "Id": "3ab8c4d1-6e7a-4d7b-8d9b-9b3f7a2d1c3b",
+    "BrandCode": "AL",
+    "PartCode": "P070",
+    "Description": "Taillight",
+    "Price": 99.7,
+	"Quantity": 47,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2021-12-31T00:00:00Z",
+        "AlternativeType": "Replacement",
+        "Parts": [
+          {
+            "Id": "a7d8b1c2-4b3e-48c6-85d9-5c3b8d7e9f2c",
+            "BrandCode": "AL",
+            "PartCode": "P071",
+            "Price": 102.99,
+            "Quantity": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "9b3e4f6a-7d2a-4c8f-91d7-6f1c7e9a8b2f",
+    "BrandCode": "BM",
+    "PartCode": "P080",
+    "Description": "Spark Plug",
+    "Price": 15.7,
+	"Quantity": 45,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2023-02-10T00:00:00Z",
+        "AlternativeType": "Replacement",
+        "Parts": [
+          {
+            "Id": "c3e4b8d7-9a6f-42d7-81c3-4a1f6b8c7e9d",
+            "BrandCode": "BM",
+            "PartCode": "P081",
+            "Price": 17.88,
+            "Quantity": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": "d1b2f3c4-5e7a-4c9d-81d6-9f7a3e1b5c2d",
+    "BrandCode": "BM",
+    "PartCode": "P090",
+    "Description": "Alternator",
+    "Price": 450.99,
+	"Quantity": 6,
+    "AlternativeParts": [
+      {
+        "SupersessionDate": "2022-06-15T00:00:00Z",
+        "AlternativeType": "Superseded",
+        "Parts": [
+          {
+            "Id": "6f7d8e9a-4b3c-4a5f-85e3-7a2d9c1f8b2e",
+            "BrandCode": "BM",
+            "PartCode": "P091",
+            "Price": 520.69,
+            "Quantity": 1
+          }
+        ]
+      }
+    ]
+  }
+]

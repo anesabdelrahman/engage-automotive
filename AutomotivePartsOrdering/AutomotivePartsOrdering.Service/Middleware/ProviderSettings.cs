@@ -1,5 +1,7 @@
-﻿namespace AutomotivePartsOrdering.Service.Application.ExternalAuthorisation {
-    public class ProviderSettings {
+﻿namespace AutomotivePartsOrdering.Service.Middleware
+{
+    public class ProviderSettings
+    {
         public string ProviderClientId { get; set; } = "";
         public string ProviderClientSecret { get; set; } = "";
         public string ProviderTokenUrl { get; set; } = "";
@@ -11,5 +13,6 @@
         public string ProviderPartsUrl { get; set; } = "";
         public string ProviderOrderUrl { get; set; } = "";
         public string ProviderBrandUrl { get; set; } = "";
+        public bool UseStubbedData { get; set; }
     }
 }

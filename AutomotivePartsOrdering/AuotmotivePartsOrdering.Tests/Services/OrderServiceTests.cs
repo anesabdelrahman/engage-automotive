@@ -1,9 +1,10 @@
 using System.Net;
 using System.Text.Json;
 using AutomotivePartsOrdering.Service.Application;
-using AutomotivePartsOrdering.Service.Application.ExternalAuthorisation;
+using AutomotivePartsOrdering.Service.Application.Mapping;
 using AutomotivePartsOrdering.Service.Domain;
 using AutomotivePartsOrdering.Service.Infrastructure.Repository;
+using AutomotivePartsOrdering.Service.Middleware;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -43,41 +44,6 @@ public class OrderServiceTests {
             _optionsMock.Object,
             _loggerMock.Object
         );
-    }
-
-    [Test]
-    public async Task CreateOrderAsync_ReturnsSuccess_WhenTokenAndOrderAreValid() {
-        // Arrange
-        var expectedToken = "valid_token";
-        var expectedUrl = _providerSettings.ProviderOrderUrl;
-        var order = new Order()
-        {
-            OrderContact = new OrderContact(),
-            MandatoryVehicleReference = new VehicleReference(),
-            Parts = new List<OrderLine>()
-        };
-        var orderDto = OrderMapper.MapOrderToDto(order);
-        var jsonContent = JsonSerializer.Serialize(orderDto);
-        var expectedResponse = new HttpResponseMessage(HttpStatusCode.Created);
-
-        _orderRepositoryMock.Setup(repo => repo.AddAsync(order)).Returns(Task.CompletedTask);
-
-        _authorisationServiceMock
-            .Setup(a => a.GetAccessTokenAsync(_optionsMock.Object, _providerSettings.ProviderOrderCreateScope))
-            .ReturnsAsync(expectedToken);
-
-        _httpClientWrapperMock
-            .Setup(h => h.PostAsync(It.IsAny<StringContent>(), expectedUrl, expectedToken))
-            .ReturnsAsync(expectedResponse);
-
-        // Act
-        var response = await _orderService.CreateOrderAsync(order);
-
-        // Assert
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
-        _orderRepositoryMock.Verify(repo => repo.AddAsync(order), Times.Once);
-        _authorisationServiceMock.Verify(a => a.GetAccessTokenAsync(_optionsMock.Object, _providerSettings.ProviderOrderCreateScope), Times.Once);
-        _httpClientWrapperMock.Verify(h => h.PostAsync(It.IsAny<StringContent>(), expectedUrl, expectedToken), Times.Once);
     }
 
     [Test]

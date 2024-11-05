@@ -9,11 +9,8 @@ namespace AutomotivePartsOrdering.Service.API {
         public async Task<IActionResult> GetPart([FromQuery] string brandCode, string partCode, int page, int pageSize) {
 
             var response = await partService.GetPartAsync(brandCode, partCode, page, pageSize);
-            
-            if (response.IsSuccessStatusCode) {
-                return Ok(response);
-            }
-            return BadRequest(response);
+
+            return Ok(response);
         }
     }
 }

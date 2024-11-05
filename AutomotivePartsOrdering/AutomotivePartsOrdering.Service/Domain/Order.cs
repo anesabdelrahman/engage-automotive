@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using AutomotivePartsOrdering.Service.Domain.Enums;
+﻿using AutomotivePartsOrdering.Service.Domain.Enums;
 
 namespace AutomotivePartsOrdering.Service.Domain
 {

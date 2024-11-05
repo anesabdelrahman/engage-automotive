@@ -1,31 +1,32 @@
-﻿using AutomotivePartsOrdering.Service.Application.ExternalAuthorisation;
+﻿using AutomotivePartsOrdering.Service.Middleware;
 using Microsoft.Extensions.Options;
-using System.Net;
-using System.Text;
+using AutomotivePartsOrdering.Service.Dto;
 
-namespace AutomotivePartsOrdering.Service.Application {
+namespace AutomotivePartsOrdering.Service.Application
+{
     public class BrandService(IHttpClientWrapper httpClientWrapper, IAuthorisationService authorisationService, IOptions<ProviderSettings> options, ILogger<BrandService> logger) : IBrandService
     {
-        public async Task<HttpResponseMessage> GetBrandAsync(int page, int pageSize)
+        public async Task<BrandsDto?> GetBrandAsync(int page, int pageSize)
         {
             try {
+                if (options.Value.UseStubbedData) {
+                    return await StubbedDataLoaderService.LoadStubbedBrandDataAsync();
+                }
+
                 var token = await authorisationService.GetAccessTokenAsync(options, options.Value.ProviderBrandReadScope);
                 var url = CreateGetUrl( page, pageSize);
 
-                if (token != null)
-                {
-                    return await httpClientWrapper.GetAsync(url, token);
-                }
+                if (token == null) 
+                    return new BrandsDto();
 
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                var response = await httpClientWrapper.GetAsync(url, token);
+                return await response.Content.ReadFromJsonAsync<BrandsDto>();
             }
             catch (Exception exception) {
 
                 logger.LogError($"{nameof(GetBrandAsync)}: {exception.Message}");
 
-                return new HttpResponseMessage(HttpStatusCode.BadRequest) {
-                    Content = new StringContent($"An unexpected error occurred.Please try again later or. Exception: {exception.Message}", Encoding.UTF8, "application/json")
-                };
+                return new BrandsDto();
             }
         }
 

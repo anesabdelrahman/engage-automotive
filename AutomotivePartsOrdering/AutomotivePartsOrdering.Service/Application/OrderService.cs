@@ -1,16 +1,16 @@
 ﻿using System.Net;
 using System.Text;
 using System.Text.Json;
-using AutomotivePartsOrdering.Service.Application.ExternalAuthorisation;
+using AutomotivePartsOrdering.Service.Application.Mapping;
 using AutomotivePartsOrdering.Service.Domain;
 using AutomotivePartsOrdering.Service.Infrastructure.Repository;
+using AutomotivePartsOrdering.Service.Middleware;
 using Microsoft.Extensions.Options;
 
-namespace AutomotivePartsOrdering.Service.Application {
+namespace AutomotivePartsOrdering.Service.Application
+{
     public class OrderService(IOrderRepository orderRepository, IHttpClientWrapper httpClientWrapper, IAuthorisationService authorisationService, IOptions<ProviderSettings> options, ILogger<OrderService> logger) : IOrderService
     {
-        const string OrderProvider = "ProviderOrderUrl";
-
         public async Task<HttpResponseMessage> CreateOrderAsync(Order order) {
             try {
                 await orderRepository.AddAsync(order);

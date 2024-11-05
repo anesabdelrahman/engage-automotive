@@ -1,4 +1,4 @@
-﻿namespace AutomotivePartsOrdering.Service.DTOs {
+﻿namespace AutomotivePartsOrdering.Service.Dto {
     public class OrderDto {
         public Guid CustomerId { get; set; }
         public Guid CompanyId { get; set; }
@@ -30,9 +30,24 @@
     }
 
     public class PartDto {
-        public Guid PartId { get; set; }
+        public Guid Id { get; set; }
         public string BrandCode { get; set; }
         public string PartCode { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+    }
+
+    public class BrandsDto {
+        public List<Brand> Brands { get; set; }
+        public int TotalItems { get; set; }
+        public int TotalPages { get; set; }
+    }
+
+    public class Brand
+    {
+        public string Description { get; set; }
+        public string BrandCode { get; set; }
     }
 
     public class VehicleReferenceDto {

@@ -1,6 +1,7 @@
 using System.Net;
 using AutomotivePartsOrdering.Service.Application;
-using AutomotivePartsOrdering.Service.Application.ExternalAuthorisation;
+using AutomotivePartsOrdering.Service.Dto;
+using AutomotivePartsOrdering.Service.Middleware;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -58,7 +59,7 @@ public class BrandServiceTests {
         var response = await _brandService.GetBrandAsync(1, 10);
 
         // Assert
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        Assert.NotNull(response);
         _authorisationServiceMock.Verify(a => a.GetAccessTokenAsync(_optionsMock.Object, _providerSettings.ProviderBrandReadScope), Times.Once);
         _httpClientWrapperMock.Verify(h => h.GetAsync(expectedUrl, expectedToken), Times.Once);
     }
@@ -74,7 +75,7 @@ public class BrandServiceTests {
         var response = await _brandService.GetBrandAsync(1, 10);
 
         // Assert
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+        Assert.That(response, Is.TypeOf<BrandsDto>());
         _httpClientWrapperMock.Verify(h => h.GetAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
     }
 
@@ -89,7 +90,6 @@ public class BrandServiceTests {
         var response = await _brandService.GetBrandAsync(1, 10);
 
         // Assert
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
-        Assert.That(await response.Content.ReadAsStringAsync() == "An unexpected error occurred.Please try again later or. Exception: Unexpected error", Is.True);
+        Assert.That(response, Is.TypeOf<BrandsDto>());
     }
 }

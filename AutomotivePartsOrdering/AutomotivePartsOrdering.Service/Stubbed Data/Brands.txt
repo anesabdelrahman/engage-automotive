@@ -1,0 +1,18 @@
+{
+  "brands": [
+    {
+      "description": "ALFA ROMEO",
+      "brandCode": "AL"
+    },
+    {
+      "description": "FORD",
+      "brandCode": "FO"
+    },
+    {
+      "description": "BMW",
+      "brandCode": "BM"
+    }
+  ],
+  "totalItems": 3,
+  "totalPages": 1
+}

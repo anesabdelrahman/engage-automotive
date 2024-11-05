@@ -1,19 +1,25 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using AutomotivePartsOrdering.Service.Application;
 
-namespace AutomotivePartsOrdering.Service.Application.ExternalAuthorisation {
-    public interface IAuthorisationService {
+namespace AutomotivePartsOrdering.Service.Middleware
+{
+    public interface IAuthorisationService
+    {
         Task<string?> GetAccessTokenAsync(IOptions<ProviderSettings> providerSettings, string scope);
     }
 
-    public class AuthorisationService(IHttpClientWrapper httpClientWrapper) : IAuthorisationService {
+    public class AuthorisationService(IHttpClientWrapper httpClientWrapper) : IAuthorisationService
+    {
         private string? _accessToken;
         private DateTime _tokenExpiry;
 
-        public async Task<string?> GetAccessTokenAsync(IOptions<ProviderSettings> providerSettings, string scope) {
+        public async Task<string?> GetAccessTokenAsync(IOptions<ProviderSettings> providerSettings, string scope)
+        {
             // Check if token is still valid
-            if (!string.IsNullOrEmpty(_accessToken) && _tokenExpiry > DateTime.UtcNow) {
+            if (!string.IsNullOrEmpty(_accessToken) && _tokenExpiry > DateTime.UtcNow)
+            {
                 return _accessToken;
             }
 
@@ -38,12 +44,13 @@ namespace AutomotivePartsOrdering.Service.Application.ExternalAuthorisation {
 
             // Cache the token and expiry time
             _accessToken = tokenResponse?.AccessToken;
-            _tokenExpiry = DateTime.UtcNow.AddSeconds(tokenResponse!.ExpiresIn - 60); // Buffer of 60 seconds
+            _tokenExpiry = DateTime.UtcNow.AddSeconds(tokenResponse!.ExpiresIn - 60);
 
             return _accessToken;
         }
 
-        private class TokenResponse {
+        private class TokenResponse
+        {
             [JsonPropertyName("access_token")] public string? AccessToken { get; init; }
 
             [JsonPropertyName("expires_in")] public int ExpiresIn { get; init; }

@@ -1,9 +1,8 @@
 ﻿namespace AutomotivePartsOrdering.Service.Domain;
 
-public class Part {
+public class PartDetail {
     public Guid Id { get; set; }
     public string BrandCode { get; set; }
     public string PartCode { get; set; }
-    public string Description { get; set; }
-    public List<AlternativePart>? AlternativeParts { get; set; }
+    public int Quantity { get; set; }
 }

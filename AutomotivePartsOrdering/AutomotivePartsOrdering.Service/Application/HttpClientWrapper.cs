@@ -2,9 +2,6 @@
 
 namespace AutomotivePartsOrdering.Service.Application {
 
-    /// <summary>
-    /// The HttpClientWrapper.
-    /// </summary>
     public class HttpClientWrapper(IHttpClientFactory httpFactory) : IHttpClientWrapper {
         private const string DefaultClientName = "DefaultClient";
 
