@@ -1,0 +1,23 @@
+meta {
+  name: GetAuthToken
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://api.eu-stage.keyloop.io/sample/sample/v1
+  body: none
+  auth: oauth2
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: /oauth/client_credential/accesstoken
+  client_id: atsjD1ESjQAc1CgYssWf3n7Ulk5s4U06
+  client_secret: MTGjsSVkT6R4dz1L
+  scope: api.parts/brands/read
+}
