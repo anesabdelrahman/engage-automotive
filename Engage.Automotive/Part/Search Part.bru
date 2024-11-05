@@ -1,0 +1,18 @@
+meta {
+  name: Search Part
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:5043/api/part?brandCode=BM&partCode=P090&page=1&pageSize=50
+  body: none
+  auth: none
+}
+
+query {
+  brandCode: BM
+  partCode: P090
+  page: 1
+  pageSize: 50
+}

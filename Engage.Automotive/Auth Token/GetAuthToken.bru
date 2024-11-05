@@ -5,9 +5,14 @@ meta {
 }
 
 post {
-  url: https://api.eu-stage.keyloop.io/sample/sample/v1
-  body: none
+  url: https://api.eu-stage.keyloop.io/sample/sample/v1/parts/brands?page=1&pageSize=50
+  body: formUrlEncoded
   auth: oauth2
+}
+
+query {
+  page: 1
+  pageSize: 50
 }
 
 headers {
@@ -16,8 +21,15 @@ headers {
 
 auth:oauth2 {
   grant_type: client_credentials
-  access_token_url: /oauth/client_credential/accesstoken
+  access_token_url: https://api.eu-stage.keyloop.io/sample/sample/v1/oauth/client_credential/accesstoken
   client_id: atsjD1ESjQAc1CgYssWf3n7Ulk5s4U06
   client_secret: MTGjsSVkT6R4dz1L
   scope: api.parts/brands/read
+}
+
+body:form-urlencoded {
+  ~client_id: atsjD1ESjQAc1CgYssWf3n7Ulk5s4U06
+  ~client_secret: MTGjsSVkT6R4dz1L
+  ~grant_type: clientCredentials
+  ~scope: api.parts/brands/read
 }

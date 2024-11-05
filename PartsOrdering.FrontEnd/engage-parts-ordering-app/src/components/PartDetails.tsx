@@ -1,12 +1,5 @@
-// src/components/PartDetails.tsx
 import React, { useState } from "react";
-
-interface Part {
-  partCode: string;
-  description: string;
-  stock: number;
-  price: number;
-}
+import { Part } from "../Services/PartsService";
 
 interface PartDetailsProps {
   part: Part | null;
@@ -22,7 +15,7 @@ const PartDetails: React.FC<PartDetailsProps> = ({ part, onAddToOrder }) => {
     <div className="part-details">
       <h3>{part.description}</h3>
       <p>Part Code: {part.partCode}</p>
-      <p>Available Stock: {part.stock}</p>
+      <p>Available Stock: {part.quantity}</p>
       <p>Price: £{part.price.toFixed(2)}</p>
       <input
         type="number"

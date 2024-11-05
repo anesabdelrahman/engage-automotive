@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState } from "react";
 import OrderReference from "./components/OrderReference";
 import PartSearch from "./components/PartSearch";

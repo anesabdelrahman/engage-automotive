@@ -1,12 +1,5 @@
-// src/components/OrderSummary.tsx
 import React from "react";
-
-interface Part {
-  partCode: string;
-  description: string;
-  stock: number;
-  price: number;
-}
+import { Part } from "../Services/PartsService";
 
 interface OrderItem {
   part: Part;

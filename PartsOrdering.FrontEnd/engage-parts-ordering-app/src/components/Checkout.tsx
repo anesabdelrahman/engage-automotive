@@ -1,4 +1,3 @@
-// src/components/Checkout.tsx
 import React from "react";
 
 interface CheckoutProps {

@@ -1,9 +1,11 @@
 import axios from "axios";
 
 export interface Part {
+  id: string;
   partCode: string;
+  brandCode: string;
   description: string;
-  stock: number;
+  quantity: number;
   price: number;
 }
 
@@ -17,7 +19,7 @@ export const getPartByCode = async (
 ): Promise<Part | null> => {
   try {
     const response = await axios.get<Part>(
-      `${API_BASE_URL}/part?brandCode=${partCode},partCode=${partCode},page=${page},pageSize=${pageSize}`
+      `${API_BASE_URL}/part?brandCode=${brandCode}&partCode=${partCode}&page=${page}&pageSize=${pageSize}`
     );
     return response.data;
   } catch (error) {

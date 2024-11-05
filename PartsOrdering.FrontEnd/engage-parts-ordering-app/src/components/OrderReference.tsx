@@ -1,4 +1,3 @@
-// src/components/OrderReference.tsx
 import React from "react";
 
 interface OrderReferenceProps {
@@ -10,15 +9,12 @@ const OrderReference: React.FC<OrderReferenceProps> = ({
 }) => {
   return (
     <div className="order-reference">
+      <span>*Order Reference</span>
       <input
         type="text"
         placeholder="Enter Job Number or VRN"
         onChange={(e) => onReferenceChange(e.target.value)}
       />
-      <select>
-        <option value="Ford">Ford (F)</option>
-        <option value="Consumables">Consumables (C)</option>
-      </select>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-/* src/App.css */
 .App {
   font-family: Arial, sans-serif;
   padding: 1rem;
@@ -11,6 +10,10 @@
 .part-details,
 .order-summary,
 .checkout {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  box-sizing: border-box;
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid #ddd;
@@ -34,8 +37,9 @@ button:hover {
 input,
 select {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-top: 10px;
 }
 
 .order-summary .order-item {
