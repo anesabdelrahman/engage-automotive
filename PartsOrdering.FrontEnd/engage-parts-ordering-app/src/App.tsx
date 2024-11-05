@@ -5,14 +5,8 @@ import PartSearch from "./components/PartSearch";
 import PartDetails from "./components/PartDetails";
 import OrderSummary from "./components/OrderSummary";
 import Checkout from "./components/Checkout";
+import { Part } from "./Services/PartsService";
 import "./App.css";
-
-interface Part {
-  partCode: string;
-  description: string;
-  stock: number;
-  price: number;
-}
 
 interface OrderItem {
   part: Part;
@@ -24,13 +18,7 @@ const App: React.FC = () => {
   const [selectedPart, setSelectedPart] = useState<Part | null>(null);
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
 
-  const handleSearch = (partCode: string) => {
-    const part: Part = {
-      partCode: partCode,
-      description: "Sample Battery",
-      stock: 15,
-      price: 116.07,
-    };
+  const handleSearchResult = (part: Part | null) => {
     setSelectedPart(part);
   };
 
@@ -51,7 +39,7 @@ const App: React.FC = () => {
     <div className="App">
       <h1>Parts Ordering System</h1>
       <OrderReference onReferenceChange={setOrderReference} />
-      <PartSearch onSearch={handleSearch} />
+      <PartSearch onSearchResult={handleSearchResult} />
       <PartDetails part={selectedPart} onAddToOrder={handleAddToOrder} />
       <OrderSummary orderItems={orderItems} onRemoveItem={handleRemoveItem} />
       <Checkout onCheckout={handleCheckout} />
