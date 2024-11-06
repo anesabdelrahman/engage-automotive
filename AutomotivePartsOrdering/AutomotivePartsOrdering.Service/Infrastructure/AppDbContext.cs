@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace AutomotivePartsOrdering.Service.Infrastructure {
-    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options) {
+    public class AppDbContext : DbContext {
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderContact> OrderContacts { get; set; }
         public DbSet<Address> DeliveryAddresses { get; set; }
@@ -13,7 +13,7 @@ namespace AutomotivePartsOrdering.Service.Infrastructure {
         public DbSet<Price> Prices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer();
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-CS1JSG3;User ID=auto-user;Password=KAvZF3hBn!ssGc!FBZaC;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
